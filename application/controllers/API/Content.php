@@ -12,7 +12,7 @@ class Content extends CI_Controller {
 
 	}
 
-// tampil soal
+	// tampil soal
 	public function TampilSoal(){
 		header('Content-Type:application/json');
 		header('Accept:application/json');
