@@ -37,6 +37,33 @@ class Model_deskripsi extends CI_Model {
     $query = $this->db->get();
     return $query;
   }
+  public function getDataBakteri(){
+    $this->db->order_by('id_deskripsi', 'ASC');
+    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->from('tb_deskripsi');
+    $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
+    $this->db->where('tb_deskripsi.id_kategori',2);
+    $query = $this->db->get();
+    return $query;
+  }
+  public function getDataJamur(){
+    $this->db->order_by('id_deskripsi', 'ASC');
+    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->from('tb_deskripsi');
+    $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
+    $this->db->where('tb_deskripsi.id_kategori',3);
+    $query = $this->db->get();
+    return $query;
+  }
+  public function getDataProtista(){
+    $this->db->order_by('id_deskripsi', 'ASC');
+    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->from('tb_deskripsi');
+    $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
+    $this->db->where('tb_deskripsi.id_kategori',4);
+    $query = $this->db->get();
+    return $query;
+  }
 
   public function getDataId($id_deskripsi){
     $this->db->order_by('id_deskripsi', 'desc');

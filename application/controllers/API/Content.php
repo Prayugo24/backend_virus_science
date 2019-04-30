@@ -58,20 +58,6 @@ class Content extends CI_Controller {
 
 	}
 
-	public function deskripsi_jantung(){
-		header('Content-Type:application/json');
-		header('Accept:application/json');
-		$data=$this->model_deskripsi->get_deskripsiName()->result();
-		$url=base_url();
-		$response =array();
-		foreach ($data as $data) {
-			$response['deskripsi'][]=array(
-				'nama_materi' =>$data->nama_materi,
-				'deskripsi' =>$data->deskripsi,
-			);
-		}
-		echo json_encode($response);
-	}
 
 
 	public function TampilDeskripsi(){
@@ -99,6 +85,62 @@ class Content extends CI_Controller {
 		//$id_kategori=$_POST['id_kategori'];
 		//$data=$this->model_deskripsi->getData3($id_kategori)->result();
 		$data=$this->model_deskripsi->getDataVirus()->result();
+		$url=base_url();
+		$response =array();
+		foreach ($data as $data) {
+			$response['deskripsi'][]=array(
+				'id_deskripsi' =>$data->id_deskripsi,
+				'nama_materi' =>$data->nama_materi,
+				'kategori' =>$data->kategori,
+				'deskripsi' =>$data->deskripsi,
+			);
+		}
+		echo json_encode($response);
+	}
+	public function TampilDeskripsiBakteri(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		//$id_kategori=$_POST['id_kategori'];
+		//$data=$this->model_deskripsi->getData3($id_kategori)->result();
+		$data=$this->model_deskripsi->getDataBakteri()->result();
+		$url=base_url();
+		$response =array();
+		foreach ($data as $data) {
+			$response['deskripsi'][]=array(
+				'id_deskripsi' =>$data->id_deskripsi,
+				'nama_materi' =>$data->nama_materi,
+				'kategori' =>$data->kategori,
+				'deskripsi' =>$data->deskripsi,
+			);
+		}
+		echo json_encode($response);
+	}
+
+	public function TampilDeskripsiProtista(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		//$id_kategori=$_POST['id_kategori'];
+		//$data=$this->model_deskripsi->getData3($id_kategori)->result();
+		$data=$this->model_deskripsi->getDataProtista()->result();
+		$url=base_url();
+		$response =array();
+		foreach ($data as $data) {
+			$response['deskripsi'][]=array(
+				'id_deskripsi' =>$data->id_deskripsi,
+				'nama_materi' =>$data->nama_materi,
+				'kategori' =>$data->kategori,
+				'deskripsi' =>$data->deskripsi,
+			);
+		}
+		echo json_encode($response);
+	}
+	
+	public function TampilDeskripsiJamur(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		//$id_kategori=$_POST['id_kategori'];
+		//$data=$this->model_deskripsi->getData3($id_kategori)->result();
+		$data=$this->model_deskripsi->getDataJamur()->result();
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
