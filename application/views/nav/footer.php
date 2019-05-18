@@ -1,7 +1,7 @@
  <!-- footer content -->
  <footer>
   <div class="pull-right">
-    <p>copyright &copy Freditya Margianto</p>
+    <p>copyright &copy Pray</p>
 </div>
 <div class="clearfix"></div>
 </footer>
