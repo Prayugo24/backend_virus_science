@@ -260,37 +260,49 @@ public function edit_jawaban(){
   {
     $soal   = $this->input->post('soal');
     $id_soal   = $this->input->post('id_soal');
-    $gambar = "cth";
+    // $gambar = "cth";
 
       // get foto
-    $config['upload_path'] = './assets/img';
-    $config['allowed_types'] = 'jpg|png|jpeg|gif';
-      $config['max_size'] = '2048';  //2MB max
-      $config['max_width'] = '4480'; // pixel
-      $config['max_height'] = '4480'; // pixel
-      $config['file_name'] = $_FILES['gambar']['name'];
+    // $config['upload_path'] = './assets/img';
+    // $config['allowed_types'] = 'jpg|png|jpeg|gif';
+    //   $config['max_size'] = '2048';  //2MB max
+    //   $config['max_width'] = '4480'; // pixel
+    //   $config['max_height'] = '4480'; // pixel
+    //   $config['file_name'] = $_FILES['gambar']['name'];
 
-      $this->upload->initialize($config);
+      // $this->upload->initialize($config);
 
-      if (!empty($_FILES['gambar']['name'])) {
+      // if (!empty($_FILES['gambar']['name'])) {
         
-       if ( $this->upload->do_upload('gambar') ) {
-        // if ( !empty($gambar) ) {
+      //  if ( $this->upload->do_upload('gambar') ) {
+      //   // if ( !empty($gambar) ) {
          
-         $foto = $this->upload->data();
-         $data = array(
-           'soal'       => $soal,
-           'gambar'       => $foto['file_name'],
-           'id_soal' => $this->model_soal->code_soal(),
-           );
-         $this->model_soal->insert($data);
-         redirect('admin/con_soal');
-       }else {
+      //    $foto = $this->upload->data();
+      //    $data = array(
+      //      'soal'       => $soal,
+      //      'gambar'       => $foto['file_name'],
+      //      'id_soal' => $this->model_soal->code_soal(),
+      //      );
+      //    $this->model_soal->insert($data);
+      //    redirect('admin/con_soal');
+      //  }else {
+      //   die("gagal upload");
+      // }
+      // }else {
+      // echo "tidak masuk";
+      // }
+
+      if(!empty($soal)){
+        $data = array(
+          'soal'       => $soal,
+          'gambar'       => 'null',
+          'id_soal' => $this->model_soal->code_soal(),
+          );
+        $this->model_soal->insert($data);
+        redirect('admin/con_soal');
+      }else{
         die("gagal upload");
       }
-    }else {
-     echo "tidak masuk";
-   }
 
  }
 
@@ -300,50 +312,62 @@ public function edit_jawaban(){
  {
   $soal   = $this->input->post('soal');
   $id_soal   = $this->input->post('id_soal');
-  $filelama = $this->input->post('filelama');
+  // $filelama = $this->input->post('filelama');
 
-  $path = './assets/img/';
+  // $path = './assets/img/';
 
   $kondisi = array('id_soal' => $id_soal );
 
       // get foto
-  $config['upload_path'] = './assets/img';
-  $config['allowed_types'] = 'jpg|png|jpeg|gif';
-      $config['max_size'] = '2048';  //2MB max
-      $config['max_width'] = '4480'; // pixel
-      $config['max_height'] = '4480'; // pixel
-      $config['file_name'] = $_FILES['gambar']['name'];
+  // $config['upload_path'] = './assets/img';
+  // $config['allowed_types'] = 'jpg|png|jpeg|gif';
+  //     $config['max_size'] = '2048';  //2MB max
+  //     $config['max_width'] = '4480'; // pixel
+  //     $config['max_height'] = '4480'; // pixel
+  //     $config['file_name'] = $_FILES['gambar']['name'];
 
-      $this->upload->initialize($config);
+      // $this->upload->initialize($config);
 
-      if (!empty($_FILES['gambar']['name'])) {
-       if ( $this->upload->do_upload('gambar') ) {
-         $foto = $this->upload->data();
-         $data = array(
-           'soal'       => $soal,
-           'gambar'       => $foto['file_name'],
-           );
-              // hapus foto pada direktori
-         @unlink($path.$this->input->post('filelama'));
+      // if (!empty($_FILES['gambar']['name'])) {
+      //  if ( $this->upload->do_upload('gambar') ) {
+      //    $foto = $this->upload->data();
+      //    $data = array(
+      //      'soal'       => $soal,
+      //      'gambar'       => $foto['file_name'],
+      //      );
+      //         // hapus foto pada direktori
+      //    @unlink($path.$this->input->post('filelama'));
 
-         $this->model_soal->update($data,$kondisi);
-         redirect('admin/con_soal');
-       }else {
-         die("gagal update");
-       }
-     }else {
-	      //echo "tidak masuk";
-	      // $foto = $this->upload->data();
-       $data = array(
-         'soal'       => $soal,
-         'gambar'       => $filelama,
-         );
+      //    $this->model_soal->update($data,$kondisi);
+      //    redirect('admin/con_soal');
+      //  }else {
+      //    die("gagal update");
+      //  }
+      // }else {
+      //     //echo "tidak masuk";
+      //     // $foto = $this->upload->data();
+      //   $data = array(
+      //     'soal'       => $soal,
+      //     'gambar'       => $filelama,
+      //     );
 
 
 
-       $this->model_soal->update($data,$kondisi);
-       redirect('admin/con_soal');
-     }
+      //   $this->model_soal->update($data,$kondisi);
+      //   redirect('admin/con_soal');
+      // }
+
+     if(!empty($soal)){
+      $data = array(
+        'soal'       => $soal,
+        'gambar'       => "null",
+        );
+        $this->model_soal->update($data,$kondisi);
+        redirect('admin/con_soal');
+      }else{
+        die("gagal upload");
+      }
+
 
    }
 

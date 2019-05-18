@@ -17,19 +17,20 @@
                 <div class="form-group">
                   <label for="soal" class="label-control col-md-4">Soal</label>
                   <div class="col-md-8">
-                    <input type="text" name="soal" class="form-control" value="<?php echo $soal; ?>" required>
+                    <!-- <input type="text" name="soal" class="form-control" value="<?php echo $soal; ?>" required> -->
+                    <textarea name="soal" id="" cols="10" class="form-control" rows="5" required><?php echo $soal; ?></textarea>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="gambar" class="label-control col-md-4">Gambar</label>
-                  <input type="file" name="gambar" class="file">
+                  <!-- <label for="gambar" class="label-control col-md-4">Gambar</label>
+                  <input type="file" name="gambar" class="file"> -->
                   <div class="input-group col-md-8">
-                    <span class="input-group-addon"><i class="fa fa-picture-o"></i></span>
+                    <!-- <span class="input-group-addon"><i class="fa fa-picture-o"></i></span>
                     <input type="text" class="form-control input-md" disabled placeholder="Upload Gambar" required>
                     <span class="input-group-btn">
                       <button class="browse btn btn-primary input-md" type="button"><i class="fa fa-search"></i> Telusuri</button>
-                    </span>
+                    </span> -->
                   </div><br>
                 </div>
 

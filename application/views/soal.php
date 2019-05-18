@@ -28,7 +28,7 @@
                           <th>No</th>
                           <th>ID</th>
                           <th>Soal</th>
-                          <th>Gambar</th>
+                          <!-- <th>Gambar</th> -->
                           <th style="width: 150px">Aksi</th>
                         </tr>
                       </thead>
@@ -38,13 +38,13 @@
                         foreach($data_soal->result_array() as $data):
                           $id_soal=$data['id_soal'];
                         $soal=$data['soal'];
-                        $gambar=$data['gambar'];
+                        // $gambar=$data['gambar'];
                         ?>
                         <tr align="center">
                           <td><?php echo $no++ ?></td>
                           <td><?php echo $id_soal ?></td>
                           <td><?php echo $soal ?></td>
-                          <td><img src='<?php echo base_url().'/assets/img/'.$gambar; ?>' width="50" height="50"></td>
+                          <!-- <td><img src='<?php echo base_url().'/assets/img/'.$gambar; ?>' width="50" height="50"></td> -->
                           <td>
                             <a class="btn btn-warning" data-toggle="modal" data-target="#edit-soal<?php echo $id_soal;?>"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                             <a class="btn btn-danger" data-toggle="modal" data-target="#delete-soal<?php echo $id_soal;?>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
