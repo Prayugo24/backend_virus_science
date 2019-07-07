@@ -9,30 +9,6 @@
 </div>
 </div>
 
-    <!-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('#table').DataTable({
-                "language":{
-                    "url":"indonesia.json",
-                    "sEmptyTable":"Tidads"
-                }
-            });
-        });
-    </script> -->
-
-    <!-- jQuery -->
-<!--     <script src="<?php echo base_url();?>assets/vendors/jquery/dist/jquery.min.js"></script>
-    Bootstrap
-    <script src="<?php echo base_url();?>assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script> -->
-
-<!-- 
-    <script src="<?php echo base_url();?>assets/datatable/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url();?>assets/datatable/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"></script>
-    <script src="<?php echo base_url();?>assets/datatables.min.js"></script>
-    <script src="<?php echo base_url();?>assets/datatables.js"></script> -->
-
     <script type="text/javascript">
       function hanyaAngka(evt) {
           var charCode = (evt.which) ? evt.which : event.keyCode

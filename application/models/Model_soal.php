@@ -26,6 +26,11 @@ class Model_soal extends CI_Model {
     $total = $query->num_rows();
     return $total;
   }
+  public function selectLimiter(){
+    $query = $this->db->get('tbl_limiter');
+    return $query;
+  }
+
 
   // SELECT soal.id_soal, soal.soal, soal.gambar, soal.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori FROM soal, tb_kategori WHERE soal.id_kategori=tb_kategori.id_kategori
   public function getAllSoal(){
@@ -36,6 +41,7 @@ class Model_soal extends CI_Model {
     $query = $this->db->get();
     return $query;
   }
+  
 
   public function edit($id_soal){
     $this->db->order_by('id_soal', 'desc');
@@ -65,10 +71,16 @@ function code_soal(){
       $kodeJadi="So-".$kodeMax;
       return $kodeJadi;
     }
+    
 
    public function insert($data)
   {
       $this->db->insert('soal',$data);
+      return TRUE;
+  }
+  public function updatelimiter($data,$kondisi)
+  {
+      $this->db->update('tbl_limiter',$data,$kondisi);
       return TRUE;
   }
 

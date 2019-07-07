@@ -21,7 +21,7 @@ class Model_deskripsi extends CI_Model {
 
   public function getData(){
     $this->db->order_by('id_deskripsi', 'desc');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $query = $this->db->get();
@@ -67,7 +67,7 @@ class Model_deskripsi extends CI_Model {
 
   public function getDataId($id_deskripsi){
     $this->db->order_by('id_deskripsi', 'desc');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $this->db->where('id_deskripsi',$id_deskripsi);

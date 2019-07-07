@@ -20,6 +20,13 @@
                   </div>
                 </div>
                 <button id="btnAdd" class="btn btn-success" data-toggle="modal" data-target="#input-soal"><i class="glyphicon glyphicon-plus"></i> Tambah Soal</button>
+                <button id="btnAdd" class="btn btn-success" data-toggle="modal" data-target="#input-limiter"><i class="glyphicon glyphicon-plus"></i> Tambah limiter</button>
+                <h4>Batas Limit Soal AR</h4>
+                <?php foreach($limit->result_array() as $data){
+                  $data_limit=$data['limiter'];
+                  }
+                  ?>
+                  <input type="text" size="5"   disabled value="<?php echo  $data_limit ?>">
                 <div class="x_content">
                   <div class="table-responsive ">
                     <table id="table_id" class="table table-bordered table-responsive table-striped" style="margin-top: 20px;">

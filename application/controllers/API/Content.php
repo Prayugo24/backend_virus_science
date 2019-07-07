@@ -41,12 +41,18 @@ class Content extends CI_Controller {
 				"answers"=>$answers
 				);
 		}
-		for($i=0;$i<10;$i++){
+		$limiter = $this->model_soal->selectLimiter()->result();
+		
+		foreach($limiter as $limit){
+			$limit=$limit->limiter;
+		}
+		for($i=0;$i<$limit;$i++){
 			$dataSoalLimit[]=$dataSoal[$i];
 		}
 		
 		$response['allRoundData'][0]=array(
 			"name"=>"Animals",
+			"limiter"=>$limit,
 			"timeLimitInSeconds"=>100,
 			"pointsAddedForCorrectAnswer"=>10,
 			"questions"=>$dataSoalLimit
@@ -58,6 +64,7 @@ class Content extends CI_Controller {
 
 	}
 
+	
 
 
 	public function TampilDeskripsi(){
@@ -88,11 +95,13 @@ class Content extends CI_Controller {
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
+			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
+				'gambar' =>base_url().'/assets/img/'.$gambar
 			);
 		}
 		echo json_encode($response);
@@ -106,11 +115,13 @@ class Content extends CI_Controller {
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
+			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
+				'gambar' =>base_url().'/assets/img/'.$gambar
 			);
 		}
 		echo json_encode($response);
@@ -125,11 +136,13 @@ class Content extends CI_Controller {
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
+			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
+				'gambar' =>base_url().'/assets/img/'.$gambar
 			);
 		}
 		echo json_encode($response);
@@ -144,11 +157,13 @@ class Content extends CI_Controller {
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
+			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
+				'gambar' =>base_url().'/assets/img/'.$gambar
 			);
 		}
 		echo json_encode($response);

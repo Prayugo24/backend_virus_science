@@ -1,6 +1,7 @@
     <?php 
     foreach($data_deskripsi->result_array() as $data):
       $id_deskripsi=$data['id_deskripsi'];
+      $gambar = $data['gambar'];
     ?>
     <div id="delete-deskripsi<?php echo $id_deskripsi;?>"  class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -11,6 +12,7 @@
           </div>
           <form class="form-horizontal" method="post" action="<?php echo base_url().'index.php/admin/delete_deskripsi'?>">
             <input type="hidden" name="id_deskripsi" value="<?php echo $id_deskripsi; ?>">
+            <input type="hidden" name="gambar" value="<?php echo $gambar; ?>">
             <div class="modal-body">
               Anda yakin ingin mengahpus data ini?
             </div>

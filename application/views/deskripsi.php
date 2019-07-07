@@ -36,6 +36,7 @@
                         $kategori=$data['kategori'];
                         $id_kategori=$data['id_kategori'];
                         $deskripsi=$data['deskripsi'];
+                        $gambar=empty($data['gambar']) ? "default.jpg": $data['gambar'];
 
                         ?>
                         <tr align="center">
@@ -44,6 +45,7 @@
                           <td><?php echo $nama_materi ?></td>
                           <td><?php echo $kategori ?></td>
                           <td><?php echo $deskripsi ?></td>
+                          <td><img src='<?php echo base_url().'/assets/img/'.$gambar; ?>' width="100" height="100"></td>
                           <td>
                             <a type="submit" name="ubah" class="btn btn-warning" onClick="edit_deskripsi('<?php echo $id_deskripsi; ?>')"><i class="fa fa-pencil"></i> Edit</a>
                             <a class="btn btn-danger" data-toggle="modal" data-target="#delete-deskripsi<?php echo $id_deskripsi;?>"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
@@ -73,12 +75,14 @@
       var nama_materi = $response.filter('#nama_materi').text();
       var id_kategori = $response.filter('#id_kategori').text();
       var deskripsi = $response.filter('#deskripsi').text();
+      var gambar = $response.filter('#gambar').text(); 
 
       // nampilkan ke modal
       $('#id_deskripsi').val(id_deskripsi);
       $('#nama_materi').val(nama_materi);
       $('#id_kategori').val(id_kategori);
       $('#deskripsi').val(deskripsi);
+      $('#old_gambar').val(gambar);
 
       $('#edit-deskripsi').modal('show');
 

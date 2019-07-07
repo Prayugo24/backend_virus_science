@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Tambah Deskripsi</h4>
               </div>
               <div class="modal-body">
-                <form id="myForm" action="<?php echo base_url().'index.php/admin/add_deskripsi'; ?>" method="post" class="form-horizontal">
+                <form  enctype="multipart/form-data" id="myForm" action="<?php echo base_url().'index.php/admin/add_deskripsi'; ?>" method="post" class="form-horizontal">
                   <input type="hidden" name="id_deskripsi">
 
                   <div class="form-group">
@@ -31,9 +31,16 @@
                 <div class="form-group">
                   <label for="deskripsi" class="label-control col-md-4">Deskripsi Materi</label>
                   <div class="col-md-8">
-                    <!-- <input type="text" name="kategori" class="form-control" required> -->
+                    <!-- <input type="file" name="gambar" class="form-control" required> -->
                     <textarea type="textarea" name="deskripsi" class="form-control" maxlength="870" required></textarea>
                   </div>
+                  
+                  <div class="form-group">
+                  <label for="deskripsi" class="label-control col-md-4">gambar Materi</label>
+                  <div class="col-md-8">
+                    <input type="file" name="gambar" class="form-control" required>
+                  </div>
+                </div>
                 </div>
               </div>
               <div class="modal-footer">

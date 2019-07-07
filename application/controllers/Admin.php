@@ -46,9 +46,11 @@ class Admin extends CI_Controller {
   {
     $data['data_soal']=$this->model_soal->get_soal();
     $data['gbr']=$this->m_upload->cari();
+    $data['limit']=$this->model_soal->selectLimiter();
     $this->load->view("nav/header", $data); 
     $this->load->view('soal', $data);
     $this->load->view('modal/input_soal');
+    $this->load->view('modal/input_limiter');
     $this->load->view('modal/update_soal');
     $this->load->view('modal/hapus_soal');
     $this->load->view('nav/footer');
@@ -88,6 +90,7 @@ class Admin extends CI_Controller {
     $this->load->view('nav/header', $data);
     $this->load->view('kategori', $data);
     $this->load->view('modal/input_kategori');
+    
     $this->load->view('modal/update_kategori');
     $this->load->view('modal/hapus_kategori');
     $this->load->view('nav/footer');
@@ -164,24 +167,55 @@ public function edit_jawaban(){
   //CRUD deskripsi
   //input deskripsi
   function add_deskripsi(){
-    $id_deskripsi = $this->input->post('id_deskripsi');
+    $id_deskripsi = $this->model_deskripsi->code_deskripsi();
     $nama_materi = $this->input->post('nama_materi');
     $id_kategori = $this->input->post('id_kategori');
     $deskripsi = $this->input->post('deskripsi');
-    $data = array(
-      'id_deskripsi' => $this->model_deskripsi->code_deskripsi(),
-      'nama_materi' => $nama_materi,
-      'id_kategori' => $id_kategori,
-      'deskripsi' => $deskripsi,
-      );
-    $this->model_deskripsi->input_deskripsi($data,'tb_deskripsi');
-    redirect('admin/con_deskripsi');
+     $config['upload_path'] = './assets/img';
+      $config['allowed_types'] = 'jpg|png|jpeg|gif';
+      $config['max_size'] = '2048';  //2MB max
+      $config['max_width'] = '4480'; // pixel
+      $config['max_height'] = '4480'; // pixel
+      $config['file_name'] = $id_deskripsi."".$_FILES['gambar']['name'];
+
+      $this->upload->initialize($config);
+
+      if (!empty($_FILES['gambar']['name'])) {
+        
+       if ( $this->upload->do_upload('gambar') ) {
+         
+         $foto = $this->upload->data();
+        $data = array(
+          'id_deskripsi' => $id_deskripsi,
+          'nama_materi' => $nama_materi,
+          'id_kategori' => $id_kategori,
+          'deskripsi' => $deskripsi,
+          'gambar'=>$foto['file_name']
+          );
+        $this->model_deskripsi->input_deskripsi($data,'tb_deskripsi');
+        redirect('admin/con_deskripsi');
+       }else {
+        die("gagal upload");
+      }
+      }else {
+      echo "tidak masuk";
+      }
+   
   }
 
   //delete deskripsi
   function delete_deskripsi(){
     $id_deskripsi=$this->input->post('id_deskripsi');
+    $gambar=$this->input->post('gambar');
+    $path = './assets/img/';
+    @unlink($path.$gambar);
+
+    // print_r($gambar);
+    
+    // $where = array('id_soal' => $id_soal );
+    // $this->model_soal->delete($where);
     $this->model_deskripsi->delete_deskripsi($id_deskripsi);
+    // return redirect('admin/con_soal');
     redirect('admin/con_deskripsi');
   }
 
@@ -196,6 +230,7 @@ public function edit_jawaban(){
       echo '<div id="nama_materi">'.$data->nama_materi.'</div>';
       echo '<div id="id_kategori">'.$data->id_kategori.'</div>';
       echo '<div id="deskripsi">'.$data->deskripsi.'</div>';
+      echo '<div id="gambar">'.$data->gambar.'</div>';
     }
   }
 
@@ -206,18 +241,56 @@ public function edit_jawaban(){
     $id_kategori = $this->input->post('id_kategori');
     $deskripsi=$this->input->post('deskripsi');
     //untuk memasukan ke tabel database
-    $data=array(
-      'nama_materi'=>$nama_materi,
-      'id_kategori'=>$id_kategori,
-      'deskripsi'=>$deskripsi
-      );
-    //menampung kd kaaryawan
-    $where=array(
-      'id_deskripsi'=>$id_deskripsi
-      );
-    // untuk mengubah data dan mengirim data ke database
-    $this->model_deskripsi->update_deskripsi($where,$data,'tb_deskripsi');
-    redirect('admin/con_deskripsi');
+
+    // $path = './assets/img/';
+  if (!empty($_FILES["gambar"]["name"])) {
+    
+      $gambar=$this->input->post('old_gambar');
+      $path = './assets/img/';
+      @unlink($path.$gambar);
+      $config['upload_path'] = './assets/img';
+      $config['allowed_types'] = 'jpg|png|jpeg|gif';
+      $config['max_size'] = '2048';  //2MB max
+      $config['max_width'] = '4480'; // pixel
+      $config['max_height'] = '4480'; // pixel
+      $config['file_name'] = $id_deskripsi."".$_FILES['gambar']['name'];
+      
+      $this->upload->initialize($config);
+      if ( $this->upload->do_upload('gambar') ) {
+      $foto = $this->upload->data();
+      $data=array(
+        'nama_materi'=>$nama_materi,
+        'id_kategori'=>$id_kategori,
+        'deskripsi'=>$deskripsi,
+        'gambar'=>$foto['file_name']
+        );
+      //menampung kd kaaryawan
+      $where=array(
+        'id_deskripsi'=>$id_deskripsi
+        );
+      // untuk mengubah data dan mengirim data ke database
+      $this->model_deskripsi->update_deskripsi($where,$data,'tb_deskripsi');
+      redirect('admin/con_deskripsi');
+    }
+  } else {
+    $gambar=$this->input->post('old_gambar');
+      $data=array(
+        'nama_materi'=>$nama_materi,
+        'id_kategori'=>$id_kategori,
+        'deskripsi'=>$deskripsi,
+        'gambar'=>$gambar
+        );
+      //menampung kd kaaryawan
+      $where=array(
+        'id_deskripsi'=>$id_deskripsi
+        );
+        // print_r($data);
+      // untuk mengubah data dan mengirim data ke database
+      $this->model_deskripsi->update_deskripsi($where,$data,'tb_deskripsi');
+      redirect('admin/con_deskripsi');
+  }
+      
+    
   }
 
   //CRUD kategori
@@ -253,6 +326,33 @@ public function edit_jawaban(){
     $this->model_kategori->update_kategori($where,$data,'tb_kategori');
     redirect('admin/con_kategori');
   } 
+
+   //CRUD SOAL
+   public function insertLimiter()
+   {
+    $limiter   = $this->input->post('limiter');
+    $id_soal   = 1;
+    
+  
+    // $path = './assets/img/';
+  
+    $kondisi = array('id_limiter' => '1' );
+
+  
+       if(!empty($limiter)){
+        $data = array(
+          'limiter'       => $limiter
+        );
+          $this->model_soal->updatelimiter($data,$kondisi);
+          redirect('admin/con_soal');
+        }else{
+          die("gagal upload");
+        }
+  
+  
+ 
+  }
+ 
 
 
   //CRUD SOAL
@@ -312,50 +412,11 @@ public function edit_jawaban(){
  {
   $soal   = $this->input->post('soal');
   $id_soal   = $this->input->post('id_soal');
-  // $filelama = $this->input->post('filelama');
 
-  // $path = './assets/img/';
+  
 
   $kondisi = array('id_soal' => $id_soal );
 
-      // get foto
-  // $config['upload_path'] = './assets/img';
-  // $config['allowed_types'] = 'jpg|png|jpeg|gif';
-  //     $config['max_size'] = '2048';  //2MB max
-  //     $config['max_width'] = '4480'; // pixel
-  //     $config['max_height'] = '4480'; // pixel
-  //     $config['file_name'] = $_FILES['gambar']['name'];
-
-      // $this->upload->initialize($config);
-
-      // if (!empty($_FILES['gambar']['name'])) {
-      //  if ( $this->upload->do_upload('gambar') ) {
-      //    $foto = $this->upload->data();
-      //    $data = array(
-      //      'soal'       => $soal,
-      //      'gambar'       => $foto['file_name'],
-      //      );
-      //         // hapus foto pada direktori
-      //    @unlink($path.$this->input->post('filelama'));
-
-      //    $this->model_soal->update($data,$kondisi);
-      //    redirect('admin/con_soal');
-      //  }else {
-      //    die("gagal update");
-      //  }
-      // }else {
-      //     //echo "tidak masuk";
-      //     // $foto = $this->upload->data();
-      //   $data = array(
-      //     'soal'       => $soal,
-      //     'gambar'       => $filelama,
-      //     );
-
-
-
-      //   $this->model_soal->update($data,$kondisi);
-      //   redirect('admin/con_soal');
-      // }
 
      if(!empty($soal)){
       $data = array(
