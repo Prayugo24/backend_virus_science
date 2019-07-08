@@ -115,7 +115,8 @@ class Content extends CI_Controller {
 		$url=base_url();
 		$response =array();
 		foreach ($data as $data) {
-			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
+			$dataGambar = $data->gambar;
+			$gambar =empty($dataGambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,
