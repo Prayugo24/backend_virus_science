@@ -101,7 +101,7 @@ class Content extends CI_Controller {
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
-				'gambar' =>base_url().'/assets/img/'.$gambar
+				'gambar' =>$gambar
 			);
 		}
 		echo json_encode($response);
@@ -121,7 +121,7 @@ class Content extends CI_Controller {
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
-				'gambar' =>base_url().'/assets/img/'.$gambar
+				'gambar' =>$gambar
 			);
 		}
 		echo json_encode($response);
@@ -142,7 +142,7 @@ class Content extends CI_Controller {
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
-				'gambar' =>base_url().'/assets/img/'.$gambar
+				'gambar' =>$gambar
 			);
 		}
 		echo json_encode($response);
@@ -163,7 +163,7 @@ class Content extends CI_Controller {
 				'nama_materi' =>$data->nama_materi,
 				'kategori' =>$data->kategori,
 				'deskripsi' =>$data->deskripsi,
-				'gambar' =>base_url().'/assets/img/'.$gambar
+				'gambar' =>$gambar
 			);
 		}
 		echo json_encode($response);
