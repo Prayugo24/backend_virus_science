@@ -114,10 +114,8 @@ class Content extends CI_Controller {
 		$data=$this->model_deskripsi->getDataBakteri()->result();
 		$url=base_url();
 		$response =array();
-		$dataGambar="";
 		foreach ($data as $data) {
-			$dataGambar = $data->gambar;
-			$gambar =empty($dataGambar) ? "default.jpg": $dataGambar;
+			$gambar =empty($data->gambar) ? "default.jpg": $data->gambar;
 			$response['deskripsi'][]=array(
 				'id_deskripsi' =>$data->id_deskripsi,
 				'nama_materi' =>$data->nama_materi,

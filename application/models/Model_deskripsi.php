@@ -30,7 +30,7 @@ class Model_deskripsi extends CI_Model {
 
   public function getDataVirus(){
     $this->db->order_by('id_deskripsi', 'ASC');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $this->db->where('tb_deskripsi.id_kategori',1);
@@ -39,7 +39,7 @@ class Model_deskripsi extends CI_Model {
   }
   public function getDataBakteri(){
     $this->db->order_by('id_deskripsi', 'ASC');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $this->db->where('tb_deskripsi.id_kategori',2);
@@ -48,7 +48,7 @@ class Model_deskripsi extends CI_Model {
   }
   public function getDataJamur(){
     $this->db->order_by('id_deskripsi', 'ASC');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $this->db->where('tb_deskripsi.id_kategori',3);
@@ -57,7 +57,7 @@ class Model_deskripsi extends CI_Model {
   }
   public function getDataProtista(){
     $this->db->order_by('id_deskripsi', 'ASC');
-    $this->db->select('tb_deskripsi.id_deskripsi, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
+    $this->db->select('tb_deskripsi.id_deskripsi,tb_deskripsi.gambar, tb_deskripsi.deskripsi, tb_deskripsi.nama_materi, tb_deskripsi.id_kategori, tb_kategori.id_kategori, tb_kategori.kategori');
     $this->db->from('tb_deskripsi');
     $this->db->join('tb_kategori','tb_deskripsi.id_kategori=tb_kategori.id_kategori');
     $this->db->where('tb_deskripsi.id_kategori',4);
