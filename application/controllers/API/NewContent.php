@@ -72,8 +72,8 @@ public function getJawaban()
         );
       }
     }else{
-      $data=$this->model_prtnya_s->get_pertanyaanNiS($nis)->result();
-      foreach ($data as $data) {
+      $data2=$this->model_prtnya_s->get_pertanyaanNiS($nis)->result();
+      foreach ($data2 as $data) {
         $response['Jawaban'][]=array(
           'id_jawaban' =>"",
           'jawaban' =>"",
