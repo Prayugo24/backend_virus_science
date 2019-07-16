@@ -61,15 +61,27 @@ public function getJawaban()
     $nis   = $this->input->post('nis');
     $data=$this->model_jwbn_guru->get_jwbnWhereNis($nis)->result();
 		$url=base_url();
-		$response =array();
-		foreach ($data as $data) {
-			$response['Jawaban'][]=array(
-				'id_jawaban' =>$data->id_jawaban,
-				'jawaban' =>$data->jawaban,
-				'pertanyaan' =>$data->pertanyaan,
-				'nama_guru' =>$data->nama_guru,
-			);
-		}
+    $response =array();
+    if(!empty($data)){
+      foreach ($data as $data) {
+        $response['Jawaban'][]=array(
+          'id_jawaban' =>$data->id_jawaban,
+          'jawaban' =>$data->jawaban,
+          'pertanyaan' =>$data->pertanyaan,
+          'nama_guru' =>$data->nama_guru,
+        );
+      }
+    }else{
+      $data=$this->model_prtnya_s->get_pertanyaanNiS($nis)->result();
+      foreach ($data as $data) {
+        $response['Jawaban'][]=array(
+          'id_jawaban' =>"",
+          'jawaban' =>"",
+          'pertanyaan' =>$data->pertanyaan,
+          'nama_guru' =>"",
+        );
+      }
+    }
 		echo json_encode($response);
 }
 public function getDataGuru()

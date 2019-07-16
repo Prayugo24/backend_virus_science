@@ -12,6 +12,16 @@ class Model_prtnya_s extends CI_Model {
     $this->db->where('tb_pertanyaan.nip',$nip);
     $query = $this->db->get();
     return $query;
+  }
+  public function get_pertanyaanNiS($nis){
+		$this->db->order_by('id_pertanyaan', 'desc');
+    $this->db->select('tb_pertanyaan.id_pertanyaan, tb_pertanyaan.pertanyaan,tb_pertanyaan.status, tb_siswa.nama as nama_siswa,guru.nama as nama_guru,tb_siswa.nis,guru.nip');
+    $this->db->from('tb_pertanyaan');
+    $this->db->join('tb_siswa',' tb_pertanyaan.nis=tb_siswa.nis');
+    $this->db->join('guru',' tb_pertanyaan.nip=guru.nip');
+    $this->db->where('tb_pertanyaan.nis',$nis);
+    $query = $this->db->get();
+    return $query;
 	}
 
   
