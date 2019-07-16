@@ -70,8 +70,6 @@ class Content extends CI_Controller {
 	public function TampilDeskripsi(){
 		header('Content-Type:application/json');
 		header('Accept:application/json');
-		//$id_kategori=$_POST['id_kategori'];
-		//$data=$this->model_deskripsi->getData3($id_kategori)->result();
 		$data=$this->model_deskripsi->getData()->result();
 		$url=base_url();
 		$response =array();

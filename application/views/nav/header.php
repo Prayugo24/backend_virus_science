@@ -79,7 +79,7 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2><?php echo $this->session->userdata('user_nama'); ?></h2>
+                <h2><?php echo $this->session->userdata('user_name'); ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -95,6 +95,14 @@
                   <li><a href="<?php echo base_url().'index.php/admin/con_soal';?>"><i class="fa fa-pencil-square-o"></i> Soal</a>
                   <li><a href="<?php echo base_url().'index.php/admin/con_jawaban';?>"><i class="fa fa-book"></i> Pilihan Jawaban</a>
                   <li><a href="<?php echo base_url().'index.php/admin/con_deskripsi';?>"><i class="fa fa-pencil"></i> Deskripsi</a>
+                  <?php if ($this->session->userdata['user_status']=="SP"){ ?>
+                  <li><a href="<?php echo base_url().'index.php/admin_guru/TambahGuru';?>"><i class="fa fa-pencil"></i> Tambah Guru</a>
+                  <li><a href="<?php echo base_url().'index.php/admin_guru/TambahSiswa';?>"><i class="fa fa-pencil"></i> Tambah Siswa</a>
+                  <?php } ?>
+                  <?php if ($this->session->userdata['user_status']=="GR"){ ?>
+                  <li><a href="<?php echo base_url().'index.php/admin_guru/pertanyaanSiswa';?>"><i class="fa fa-pencil"></i> Pertanyaan Siswa</a>
+                  <li><a href="<?php echo base_url().'index.php/admin_guru/JawabanGuru';?>"><i class="fa fa-pencil"></i> Jawaban Guru</a>
+                  <?php } ?>
                   </li>
 
                 </ul>
@@ -139,9 +147,15 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li>
+                    <?php if ($this->session->userdata['user_status']=="SP"){ ?>
                       <a href="<?php echo base_url('index.php/c_ganti/index'); ?>"><i class="fa fa-gear pull-right"></i>
                         <span>Ganti Password</span>
                       </a>
+                    <?php } else { ?>
+                      <a href="<?php echo base_url('index.php/Admin_Guru/profilGuru'); ?>"><i class="fa fa-gear pull-right"></i>
+                        <span>Ganti Password</span>
+                      </a>
+                    <?php } ?>
                     </li>
                     <li><a href="<?php echo base_url('index.php/admin/logout') ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>

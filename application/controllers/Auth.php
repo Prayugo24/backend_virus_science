@@ -21,37 +21,29 @@ class Auth extends CI_Controller {
 				redirect("admin");
 
 			}else{
-
-				//jika session belum terdaftar
-
-				//set form validation
 	            $this->form_validation->set_rules('username', 'Username', 'required');
 	            $this->form_validation->set_rules('password', 'Password', 'required');
 
-	            //set message form validation
-	            // $this->form_validation->set_message('required', '<div class="alert alert-danger" style="margin-top: 3px">
-	            //     <div class="header"><b><i class="fa fa-exclamation-circle"></i> {field}</b> harus diisi</div></div>');
-
-	            //cek validasi
 				if ($this->form_validation->run() == TRUE) {
 
 				//get data dari FORM
 	            $username = $this->input->post("username", TRUE);
 	            // $password = $this->input->post('password', TRUE);
-	            $password = MD5($this->input->post('password', TRUE));
+				$password = MD5($this->input->post('password', TRUE));
+				$password2 = ($this->input->post('password', TRUE));
 	            
 	            //checking data via model
-	            $checking = $this->model_login->check_login('tb_user', array('username' => $username), array('password' => $password));
-	            
+	            $checking1 = $this->model_login->check_login('tb_user', array('username' => $username), array('password' => $password));
+	            $checking2 = $this->model_login->check_login('guru', array('nip' => $username), array('password' => $password2));
 	            //jika ditemukan, maka create session
-	            if ($checking != FALSE) {
-	                foreach ($checking as $apps) {
+	            if ($checking1 != FALSE) {
+	                foreach ($checking1 as $apps) {
 
 	                    $session_data = array(
 	                        'user_id'   => $apps->id_user,
 	                        'user_name' => $apps->username,
 	                        'user_pass' => $apps->password,
-	                        'user_nama' => $apps->nama_user
+							'user_status' => "SP"
 	                    );
 	                    //set session userdata
 	                    $this->session->set_userdata($session_data);
@@ -59,11 +51,27 @@ class Auth extends CI_Controller {
 	                    redirect('admin/');
 
 	                }
-	            }else{
+	            }elseif($checking2 != FALSE){
+					foreach ($checking2 as $apps) {
 
+	                    $session_data = array(
+	                        'user_id'   => $apps->id_guru,
+							'user_name' => $apps->nama,
+							'user_nip' => $apps->nip,
+	                        'user_pass' => $apps->password,
+							'user_status' => "GR"
+	                    );
+	                    //set session userdata
+	                    $this->session->set_userdata($session_data);
+
+	                    redirect('admin/');
+
+	                }
+				}else{
 	            	$data['error'] = '<div class="alert alert-danger" style="margin-top: 3px">
 	                	<div class="header"><b><i class="fa fa-exclamation-circle"></i> ERROR</b> Username atau Password Salah !</div></div>';
-	            	$this->load->view('login08', $data);
+					$this->load->view('login08', $data);
+					
 	            }
 
 	        }else{

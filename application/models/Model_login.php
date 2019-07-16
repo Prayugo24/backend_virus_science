@@ -24,4 +24,6 @@ class Model_login extends CI_Model
             return $query->result();
         }
     }
+
+    
 }

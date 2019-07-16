@@ -34,7 +34,6 @@ class Admin extends CI_Controller {
       $this->load->view("nav/footer");      
 
     }else{
-
       //jika session belum terdaftar, maka redirect ke halaman login
       redirect("auth");
 
