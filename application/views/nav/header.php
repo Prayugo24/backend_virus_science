@@ -140,9 +140,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <?php foreach ($gbr as $row) {?>
-                    <img src="<?php echo base_url('assets/img/'.$row->gambar.'');?>" alt=""><?php echo $this->session->userdata('user_nama');?>
-                    <?php } ?> 
+                    
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
